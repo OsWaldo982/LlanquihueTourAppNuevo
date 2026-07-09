@@ -89,6 +89,7 @@ git clone https://github.com/OsWaldo982/llanquihue-tour.git
 
 4. Ejecuta el método `main()`.
 
+```
 ### Salida esperada
 === SERVICIOS TURISTICOS ===
 RUTA GASTRONÓMICA | Nombre: Sabores del Sur | Duración: 3.5 horas | Número de paradas: 5
@@ -97,7 +98,7 @@ PASEO LACUSTRE | Nombre: Travesía Lago Llanquihue | Duración: 2.5 horas | Emba
 PASEO LACUSTRE | Nombre: Paseo en Kayak | Duración: 1.5 horas | Embarcación: Kayak doble
 EXCURSIÓN CULTURAL | Nombre: Museo Colonial | Duración: 2.0 horas | Lugar histórico: Fuerte San Antonio
 EXCURSIÓN CULTURAL | Nombre: Ciudad Patrimonial | Duración: 3.0 horas | Lugar histórico: Iglesia de Piedra
-
+```
 
 ---
 
