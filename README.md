@@ -1,6 +1,6 @@
 ![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
 
-# 🏔️ Llanquihue Tour - Actividad Formativa 4
+# 🏔️ Llanquihue Tour - Actividad Formativa 5
 
 ## 👤 Autor del proyecto
 
@@ -12,104 +12,149 @@
 
 ## 📘 Descripción general del sistema
 
-Este proyecto corresponde a la **Actividad Formativa 4** (Semana 6) de la asignatura *Desarrollo Orientado a Objetos I*.
+Este proyecto corresponde a la **Actividad Formativa 5** (Semana 7) de la asignatura *Desarrollo Orientado a Objetos I*.
 
-En esta etapa, el sistema incorpora la **gestión de servicios turísticos** ofrecidos por la agencia **Llanquihue Tour**, ubicada en la Región de Los Lagos. Se implementa una jerarquía de clases que modela distintos tipos de servicios: **Rutas Gastronómicas**, **Paseos Lacustres** y **Excursiones Culturales**, todas heredando de una clase base `ServicioTuristico`.
+En esta etapa, el sistema evoluciona para aplicar **polimorfismo** y **colecciones genéricas** sobre la jerarquía de servicios turísticos. Se utiliza una colección `ArrayList<ServicioTuristico>` para almacenar distintos tipos de servicios, los cuales son recorridos y mostrados invocando métodos sobrescritos desde referencias de la superclase.
 
 Con esta actividad se aplican conceptos relacionados con:
 
-* Organización modular en paquetes (`model`, `data`, `ui`)
-* Programación Orientada a Objetos (herencia, superclases y subclases)
-* Uso de `super()` en constructores
-* Sobrescritura del método `toString()`
-* Separación de responsabilidades
+* Polimorfismo en tiempo de ejecución
+* Sobrescritura de métodos (`@Override`)
+* Colecciones genéricas (`ArrayList`)
+* Recorrido de colecciones con `for-each`
+* Separación de responsabilidades por paquetes
 
 ---
-```
+
 ## 🧱 Estructura del proyecto
+
+```text
 📁 LlanquihueTourApp/
 ├── 📁 src/
-│ ├── 📁 model/
-│ │ ├── ServicioTuristico.java
-│ │ ├── RutaGastronomica.java
-│ │ ├── PaseoLacustre.java
-│ │ └── ExcursionCultural.java
-│ ├── 📁 data/
-│ │ └── GestorServicios.java
-│ └── 📁 ui/
-│ └── Main.java
+│   └── 📁 main/
+│       └── 📁 java/
+│           └── 📁 com.llanquihue/
+│               ├── 📁 model/
+│               │   ├── ServicioTuristico.java
+│               │   ├── RutaGastronomica.java
+│               │   ├── PaseoLacustre.java
+│               │   └── ExcursionCultural.java
+│               ├── 📁 data/
+│               │   └── GestorServicios.java
+│               ├── 📁 service/
+│               │   └── ControladorDeTurismo.java
+│               └── 📁 ui/
+│                   └── Main.java
 ```
----
-
-## 📚 Clases implementadas (Semana 6)
-
-| Clase | Paquete | Descripción |
-|-------|---------|-------------|
-| `ServicioTuristico` | `model` | Superclase con atributos comunes: `nombre` y `duracionHoras`. |
-| `RutaGastronomica` | `model` | Subclase de `ServicioTuristico`. Añade atributo `numeroDeParadas`. |
-| `PaseoLacustre` | `model` | Subclase de `ServicioTuristico`. Añade atributo `tipoEmbarcacion`. |
-| `ExcursionCultural` | `model` | Subclase de `ServicioTuristico`. Añade atributo `lugarHistorico`. |
-| `GestorServicios` | `data` | Crea instancias de prueba de cada subclase. |
-| `Main` | `ui` | Punto de entrada. Ejecuta el programa y muestra los servicios por consola. |
 
 ---
 
-## Jerarquía de clases
-ServicioTuristico (superclase)
+## 📚 Clases implementadas - Semana 7
+
+| Clase                  | Paquete   | Descripción                                                                                     |
+| ---------------------- | --------- | ----------------------------------------------------------------------------------------------- |
+| `ServicioTuristico`    | `model`   | Superclase con método `mostrarInformacion()` que será sobrescrito.                              |
+| `RutaGastronomica`     | `model`   | Subclase que sobrescribe `mostrarInformacion()` con detalles de paradas y degustaciones.        |
+| `PaseoLacustre`        | `model`   | Subclase que sobrescribe `mostrarInformacion()` con tipo de embarcación y servicios incluidos.  |
+| `ExcursionCultural`    | `model`   | Subclase que sobrescribe `mostrarInformacion()` con lugar histórico y guía especializado.       |
+| `GestorServicios`      | `data`    | Crea y retorna un `ArrayList<ServicioTuristico>` con al menos 5 objetos de distintas subclases. |
+| `ControladorDeTurismo` | `service` | Recorre la colección y muestra la información de forma polimórfica.                             |
+| `Main`                 | `ui`      | Punto de entrada. Orquesta la creación y visualización de los servicios.                        |
+
+---
+
+## 🧬 Jerarquía de clases
+
+```text
+ServicioTuristico
 ├── RutaGastronomica
 ├── PaseoLacustre
 └── ExcursionCultural
-
-
-## 🔧 Conceptos aplicados (Semana 6)
-
-| Concepto | Aplicación en el proyecto |
-|----------|---------------------------|
-| **Paquetes** | Organización modular en `model`, `data`, `ui`. |
-| **Herencia** | `RutaGastronomica`, `PaseoLacustre` y `ExcursionCultural` extienden `ServicioTuristico`. |
-| **super()** | Cada subclase llama al constructor de la superclase con `super(nombre, duracionHoras)`. |
-| **Sobrescritura** | Cada subclase sobrescribe `toString()` usando `super.toString()`. |
-| **Encapsulamiento** | Atributos `private` o `protected` con acceso mediante constructores. |
-| **Separación de responsabilidades** | `model` para datos, `data` para creación, `ui` para ejecución. |
-| **Maven** | Gestión de dependencias y empaquetado JAR. |
+```
 
 ---
 
-## ⚙️ Instrucciones para ejecutar el proyecto
+## 🔧 Conceptos aplicados - Semana 7
 
-### Desde el código fuente (IntelliJ IDEA)
+| Concepto                            | Aplicación en el proyecto                                                                                                |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Polimorfismo**                    | Recorrido de `ArrayList<ServicioTuristico>` invocando `mostrarInformacion()` desde la referencia de la superclase.       |
+| **Sobrescritura**                   | Cada subclase implementa su propia versión de `mostrarInformacion()` con `@Override`.                                    |
+| **Colección genérica**              | `ArrayList<ServicioTuristico>` almacena objetos de diferentes subclases.                                                 |
+| **for-each**                        | Bucle que recorre la colección sin necesidad de usar `instanceof`.                                                       |
+| **Separación de responsabilidades** | `model` contiene las clases del dominio, `data` crea los datos, `service` contiene la lógica y `ui` ejecuta el programa. |
 
-1. Clona el repositorio desde GitHub:
+---
+
+## ⚙️ Instrucciones para compilar y ejecutar
+
+### Desde IntelliJ IDEA
+
+1. Clonar el repositorio desde GitHub:
+
+```bash
 git clone https://github.com/OsWaldo982/llanquihue-tour.git
-
-
-2. Abre el proyecto en IntelliJ IDEA.
-
-3. Navega hasta el paquete `ui` y abre la clase `Main.java`.
-
-4. Ejecuta el método `main()`.
-
 ```
-### Salida esperada
-=== SERVICIOS TURISTICOS ===
-RUTA GASTRONÓMICA | Nombre: Sabores del Sur | Duración: 3.5 horas | Número de paradas: 5
-RUTA GASTRONÓMICA | Nombre: Ruta del Asado Patagónico | Duración: 4.0 horas | Número de paradas: 3
-PASEO LACUSTRE | Nombre: Travesía Lago Llanquihue | Duración: 2.5 horas | Embarcación: Catamarán
-PASEO LACUSTRE | Nombre: Paseo en Kayak | Duración: 1.5 horas | Embarcación: Kayak doble
-EXCURSIÓN CULTURAL | Nombre: Museo Colonial | Duración: 2.0 horas | Lugar histórico: Fuerte San Antonio
-EXCURSIÓN CULTURAL | Nombre: Ciudad Patrimonial | Duración: 3.0 horas | Lugar histórico: Iglesia de Piedra
+
+2. Abrir el proyecto en IntelliJ IDEA.
+
+3. Navegar hasta el paquete `ui`.
+
+4. Abrir la clase `Main.java`.
+
+5. Ejecutar el método `main()`.
+
+
+## 🖥️ Salida esperada
+
+```text
+=== SERVICIOS TURÍSTICOS ===
+
+RUTA GASTRONÓMICA
+Nombre: Sabores del Sur
+Duración: 3.5 horas
+Número de paradas: 5
+Incluye degustaciones en cada parada
+
+RUTA GASTRONÓMICA
+Nombre: Ruta del Asado Patagónico
+Duración: 4.0 horas
+Número de paradas: 3
+Incluye degustaciones en cada parada
+
+PASEO LACUSTRE
+Nombre: Travesía Lago Llanquihue
+Duración: 2.5 horas
+Embarcación: Catamarán
+Incluye chaleco salvavidas y guía
+
+PASEO LACUSTRE
+Nombre: Paseo en Kayak
+Duración: 1.5 horas
+Embarcación: Kayak doble
+Incluye chaleco salvavidas y guía
+
+EXCURSIÓN CULTURAL
+Nombre: Museo Colonial
+Duración: 2.0 horas
+Lugar histórico: Fuerte San Antonio
+Incluye guía especializado
+
+EXCURSIÓN CULTURAL
+Nombre: Ciudad Patrimonial
+Duración: 3.0 horas
+Lugar histórico: Iglesia de Piedra
+Incluye guía especializado
 ```
 
 ---
 
-## 🎯 Objetivo de la semana 6
+## 🎯 Objetivo de la Semana 7
 
-Implementar una jerarquía de clases para modelar los distintos servicios turísticos que ofrece la agencia Llanquihue Tour, aplicando herencia, uso de `super()` en constructores y sobrescritura del método `toString()` para mostrar la información completa de cada servicio.
+Aplicar polimorfismo y colecciones genéricas para gestionar dinámicamente distintos tipos de servicios turísticos, permitiendo que el sistema escale sin modificar el código existente.
+
+Se implementa un método `mostrarInformacion()` sobrescrito en cada subclase y se recorre una colección `ArrayList<ServicioTuristico>` invocando dicho método desde referencias de la superclase.
 
 ---
-
-## 📅 Fecha de entrega
-
-**09/07/2026**
 
 © Duoc UC | Escuela de Informática y Telecomunicaciones | Desarrollo Orientado a Objetos I
