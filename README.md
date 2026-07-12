@@ -1,6 +1,6 @@
 ![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
 
-# 🏔️ Llanquihue Tour - Actividad Formativa 6
+# 🏔️ Llanquihue Tour
 
 ## 👤 Autor del proyecto
 
@@ -65,7 +65,7 @@ Separación de responsabilidades por paquetes
 
 ---
 
-## 📚 Clases implementadas - Semana 7
+## 📚 Clases implementadas - Semana 8
 
 | Clase                  | Paquete | Descripción                                                                                     |
 | ---------------------- |---------| ----------------------------------------------------------------------------------------------- |
@@ -77,7 +77,7 @@ Separación de responsabilidades por paquetes
 | `ScreenPrincipal` | `ui`    | Interfaz gráfica con JFrame para ingresar y visualizar entidades.                            |
 
 
-## 🔧 Conceptos aplicados - Semana 7
+## 🔧 Conceptos aplicados - Semana 8
 
 | Concepto                            | Aplicación en el proyecto                                                                                                |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
