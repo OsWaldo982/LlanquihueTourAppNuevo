@@ -1,6 +1,6 @@
 ![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
 
-# 🏔️ Llanquihue Tour - Actividad Formativa 5
+# 🏔️ Llanquihue Tour - Actividad Formativa 6
 
 ## 👤 Autor del proyecto
 
@@ -12,17 +12,26 @@
 
 ## 📘 Descripción general del sistema
 
-Este proyecto corresponde a la **Actividad Formativa 5** (Semana 7) de la asignatura *Desarrollo Orientado a Objetos I*.
+📘 Descripción general del sistema
+Este proyecto corresponde a la (Semana 8) de la asignatura Desarrollo Orientado a Objetos I.
 
-En esta etapa, el sistema evoluciona para aplicar **polimorfismo** y **colecciones genéricas** sobre la jerarquía de servicios turísticos. Se utiliza una colección `ArrayList<ServicioTuristico>` para almacenar distintos tipos de servicios, los cuales son recorridos y mostrados invocando métodos sobrescritos desde referencias de la superclase.
+En esta etapa, el sistema incorpora interfaces, polimorfismo y estructuras dinámicas para gestionar distintas entidades de la agencia Llanquihue Tour. Se define una interfaz Registrable que establece un contrato común para todas las entidades gestionables. Las clases GuiaTuristico, Vehiculo y ColaboradorExterno implementan esta interfaz y sobrescriben el método mostrarResumen().
+
+Se utiliza una colección ArrayList<Registrable> para almacenar objetos de distintos tipos, los cuales son recorridos y diferenciados mediante el operador instanceof. Además, se implementa una interfaz gráfica con JFrame que permite ingresar y visualizar las entidades del sistema.
 
 Con esta actividad se aplican conceptos relacionados con:
 
-* Polimorfismo en tiempo de ejecución
-* Sobrescritura de métodos (`@Override`)
-* Colecciones genéricas (`ArrayList`)
-* Recorrido de colecciones con `for-each`
-* Separación de responsabilidades por paquetes
+Definición e implementación de interfaces
+
+Polimorfismo en tiempo de ejecución
+
+Colecciones genéricas (ArrayList)
+
+Diferenciación de tipos con instanceof
+
+Interfaz gráfica con JFrame y JOptionPane
+
+Separación de responsabilidades por paquetes
 
 ---
 
@@ -38,51 +47,44 @@ Con esta actividad se aplican conceptos relacionados con:
 │               │   ├── ServicioTuristico.java
 │               │   ├── RutaGastronomica.java
 │               │   ├── PaseoLacustre.java
-│               │   └── ExcursionCultural.java
+│               │   ├── ExcursionCultural.java
+│               │   ├── Registrable.java
+│               │   ├── GuiaTuristico.java
+│               │   ├── Vehiculo.java
+│               │   └── ColaboradorExterno.java
 │               ├── 📁 data/
-│               │   └── GestorServicios.java
+│               │   ├── GestorServicios.java
+│               │   └── GestorEntidades.java
 │               ├── 📁 service/
 │               │   └── ControladorDeTurismo.java
 │               └── 📁 ui/
-│                   └── Main.java
+│                   ├── Main.java
+│                   └── ScreenPrincipal.java
+
 ```
 
 ---
 
 ## 📚 Clases implementadas - Semana 7
 
-| Clase                  | Paquete   | Descripción                                                                                     |
-| ---------------------- | --------- | ----------------------------------------------------------------------------------------------- |
-| `ServicioTuristico`    | `model`   | Superclase con método `mostrarInformacion()` que será sobrescrito.                              |
-| `RutaGastronomica`     | `model`   | Subclase que sobrescribe `mostrarInformacion()` con detalles de paradas y degustaciones.        |
-| `PaseoLacustre`        | `model`   | Subclase que sobrescribe `mostrarInformacion()` con tipo de embarcación y servicios incluidos.  |
-| `ExcursionCultural`    | `model`   | Subclase que sobrescribe `mostrarInformacion()` con lugar histórico y guía especializado.       |
-| `GestorServicios`      | `data`    | Crea y retorna un `ArrayList<ServicioTuristico>` con al menos 5 objetos de distintas subclases. |
-| `ControladorDeTurismo` | `service` | Recorre la colección y muestra la información de forma polimórfica.                             |
-| `Main`                 | `ui`      | Punto de entrada. Orquesta la creación y visualización de los servicios.                        |
+| Clase                  | Paquete | Descripción                                                                                     |
+| ---------------------- |---------| ----------------------------------------------------------------------------------------------- |
+| `Registrable`    | `model` | Interfaz que define el contrato mostrarResumen() para todas las entidades.                           |
+| `GuiaTuristico`     | `model` | Implementa Registrable. Atributos: nombre, especialidad, yearsExperiencia.     |
+| `Vehiculo`        | `model` | Implementa Registrable. Atributos: patente, tipo, capacidad.  |
+| `ColaboradorExterno`    | `model` | Implementa Registrable. Atributos: nombre, servicio, telefono.       |
+| `GestorEntidades`      | `data`  | Contiene ArrayList<Registrable>, carga datos de prueba y recorre con instanceof. |
+| `ScreenPrincipal` | `ui`    | Interfaz gráfica con JFrame para ingresar y visualizar entidades.                            |
 
----
-
-## 🧬 Jerarquía de clases
-
-```text
-ServicioTuristico
-├── RutaGastronomica
-├── PaseoLacustre
-└── ExcursionCultural
-```
-
----
 
 ## 🔧 Conceptos aplicados - Semana 7
 
 | Concepto                            | Aplicación en el proyecto                                                                                                |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **Polimorfismo**                    | Recorrido de `ArrayList<ServicioTuristico>` invocando `mostrarInformacion()` desde la referencia de la superclase.       |
-| **Sobrescritura**                   | Cada subclase implementa su propia versión de `mostrarInformacion()` con `@Override`.                                    |
-| **Colección genérica**              | `ArrayList<ServicioTuristico>` almacena objetos de diferentes subclases.                                                 |
-| **for-each**                        | Bucle que recorre la colección sin necesidad de usar `instanceof`.                                                       |
-| **Separación de responsabilidades** | `model` contiene las clases del dominio, `data` crea los datos, `service` contiene la lógica y `ui` ejecuta el programa. |
+| **Interfaz**                    | Registrable define el método mostrarResumen() implementado por tres clases.       |
+| **Polimorfismo**                   | ArrayList<Registrable> almacena distintos tipos y los recorre con referencia a la interfaz.                                   |
+| **instanceof**              | 	Permite identificar el tipo de cada objeto y aplicar lógica diferenciada.                                                |
+| **Colección genérica**                        | 	ArrayList<Registrable> permite agregar cualquier clase que implemente la interfaz.                                                      |
 
 ---
 
@@ -105,55 +107,10 @@ git clone https://github.com/OsWaldo982/llanquihue-tour.git
 5. Ejecutar el método `main()`.
 
 
-## 🖥️ Salida esperada
+## 🎯 Objetivo de la Semana 8
 
-```text
-=== SERVICIOS TURÍSTICOS ===
+Integrar interfaces, polimorfismo y estructuras dinámicas en el sistema de Llanquihue Tour. Se define una interfaz Registrable como contrato común, se implementa en múltiples clases, se almacenan objetos en una colección genérica y se diferencian mediante instanceof. Todo esto con una interfaz gráfica funcional.
 
-RUTA GASTRONÓMICA
-Nombre: Sabores del Sur
-Duración: 3.5 horas
-Número de paradas: 5
-Incluye degustaciones en cada parada
-
-RUTA GASTRONÓMICA
-Nombre: Ruta del Asado Patagónico
-Duración: 4.0 horas
-Número de paradas: 3
-Incluye degustaciones en cada parada
-
-PASEO LACUSTRE
-Nombre: Travesía Lago Llanquihue
-Duración: 2.5 horas
-Embarcación: Catamarán
-Incluye chaleco salvavidas y guía
-
-PASEO LACUSTRE
-Nombre: Paseo en Kayak
-Duración: 1.5 horas
-Embarcación: Kayak doble
-Incluye chaleco salvavidas y guía
-
-EXCURSIÓN CULTURAL
-Nombre: Museo Colonial
-Duración: 2.0 horas
-Lugar histórico: Fuerte San Antonio
-Incluye guía especializado
-
-EXCURSIÓN CULTURAL
-Nombre: Ciudad Patrimonial
-Duración: 3.0 horas
-Lugar histórico: Iglesia de Piedra
-Incluye guía especializado
-```
-
----
-
-## 🎯 Objetivo de la Semana 7
-
-Aplicar polimorfismo y colecciones genéricas para gestionar dinámicamente distintos tipos de servicios turísticos, permitiendo que el sistema escale sin modificar el código existente.
-
-Se implementa un método `mostrarInformacion()` sobrescrito en cada subclase y se recorre una colección `ArrayList<ServicioTuristico>` invocando dicho método desde referencias de la superclase.
 
 ---
 

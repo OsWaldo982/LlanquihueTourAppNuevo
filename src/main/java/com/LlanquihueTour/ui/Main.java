@@ -1,24 +1,22 @@
 package com.LlanquihueTour.ui;
 
 
-import com.LlanquihueTour.data.GestorServicios;
-import com.LlanquihueTour.model.ServicioTuristico;
-import com.LlanquihueTour.service.ControladorDeTurismo;
-
-import java.util.ArrayList;
-
-
-import java.util.ArrayList;
+import javax.swing.*;
 
 public class Main {
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        GestorServicios gestorServicios = new GestorServicios();
-        ControladorDeTurismo controladorDeTurismo = new ControladorDeTurismo();
-
-        ArrayList<ServicioTuristico> serviciosTuristicos = gestorServicios.generarTuristicos();
-
-        controladorDeTurismo.mostrarTuristicos(serviciosTuristicos);
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new ScreenPrincipal().setVisible(true);
+            }
+        });
     }
 }

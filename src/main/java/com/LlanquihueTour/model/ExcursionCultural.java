@@ -1,6 +1,6 @@
 package com.LlanquihueTour.model;
 
-public class ExcursionCultural extends ServicioTuristico {
+public class ExcursionCultural extends ServicioTuristico  {
 
     private String lugarHistorico;
 
