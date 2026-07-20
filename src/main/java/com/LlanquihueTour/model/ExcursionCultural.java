@@ -1,5 +1,10 @@
 package com.LlanquihueTour.model;
 
+import com.LlanquihueTour.utils.Validaciones;
+
+/**
+ * Servicio turistico enfocado en un lugar historico o patrimonial.
+ */
 public class ExcursionCultural extends ServicioTuristico  {
 
     private String lugarHistorico;
@@ -7,7 +12,7 @@ public class ExcursionCultural extends ServicioTuristico  {
 
     public ExcursionCultural(float duracionHoras, String nombre, String lugarHistorico) {
         super(duracionHoras, nombre);
-        this.lugarHistorico = lugarHistorico;
+        setLugarHistorico(lugarHistorico);
     }
 
 
@@ -16,7 +21,7 @@ public class ExcursionCultural extends ServicioTuristico  {
     }
 
     public void setLugarHistorico(String lugarHistorico) {
-        this.lugarHistorico = lugarHistorico;
+        this.lugarHistorico = Validaciones.textoObligatorio(lugarHistorico, "El lugar historico");
     }
 
 

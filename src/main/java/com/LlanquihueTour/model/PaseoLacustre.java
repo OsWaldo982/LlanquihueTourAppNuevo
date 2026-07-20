@@ -1,12 +1,17 @@
 package com.LlanquihueTour.model;
 
+import com.LlanquihueTour.utils.Validaciones;
+
+/**
+ * Servicio turistico realizado en una embarcacion por el lago.
+ */
 public class PaseoLacustre extends ServicioTuristico {
 
     private String tipoEmbarcacion;
 
     public PaseoLacustre(float duracionHoras, String nombre, String tipoEmbarcacion) {
         super(duracionHoras, nombre);
-        this.tipoEmbarcacion = tipoEmbarcacion;
+        setTipoEmbarcacion(tipoEmbarcacion);
     }
 
 
@@ -15,7 +20,7 @@ public class PaseoLacustre extends ServicioTuristico {
     }
 
     public void setTipoEmbarcacion(String tipoEmbarcacion) {
-        this.tipoEmbarcacion = tipoEmbarcacion;
+        this.tipoEmbarcacion = Validaciones.textoObligatorio(tipoEmbarcacion, "El tipo de embarcacion");
     }
 
 

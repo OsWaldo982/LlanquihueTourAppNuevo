@@ -1,14 +1,19 @@
 package com.LlanquihueTour.model;
 
-public class ServicioTuristico {
+import com.LlanquihueTour.utils.Validaciones;
+
+/**
+ * Clase base con los datos comunes de los servicios ofrecidos por la agencia.
+ */
+public abstract class ServicioTuristico {
 
     private String nombre;
     private float duracionHoras;
 
 
     public ServicioTuristico(float duracionHoras, String nombre) {
-        this.duracionHoras = duracionHoras;
-        this.nombre = nombre;
+        setDuracionHoras(duracionHoras);
+        setNombre(nombre);
     }
 
 
@@ -17,22 +22,20 @@ public class ServicioTuristico {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = Validaciones.textoObligatorio(nombre, "El nombre del servicio");
     }
 
     public float getDuracionHoras() {
         return duracionHoras;
     }
 
-    public void setDuracionHoras(int duracionHoras) {
-        this.duracionHoras = duracionHoras;
+    public void setDuracionHoras(float duracionHoras) {
+        this.duracionHoras = Validaciones.decimalPositivo(duracionHoras, "La duracion");
     }
 
 
-    // este metodo se va a sobreescribir
-    public void mostrarInformacion() {
-        System.out.println("Servicio: " + nombre + " | Duración: " + duracionHoras + " horas");
-    }
+    // Este metodo se sobreescribe en cada tipo de servicio.
+    public abstract void mostrarInformacion();
 
 
 

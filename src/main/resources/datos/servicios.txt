@@ -1,0 +1,7 @@
+# TIPO;DURACION;NOMBRE;DETALLE
+GASTRONOMICA;3.5;Sabores del Sur;5
+GASTRONOMICA;4.0;Ruta del Asado Patagónico;3
+LACUSTRE;2.5;Travesía Lago Llanquihue;Catamarán
+LACUSTRE;1.5;Paseo en Kayak;Kayak doble
+CULTURAL;2.0;Museo Colonial;Fuerte San Antonio
+CULTURAL;3.0;Ciudad Patrimonial;Iglesia de Piedra

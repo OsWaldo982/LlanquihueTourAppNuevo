@@ -3,6 +3,9 @@ package com.LlanquihueTour.ui;
 
 import javax.swing.*;
 
+/**
+ * Punto de entrada de la aplicacion Llanquihue Tour.
+ */
 public class Main {
 
     public static void main(String[] args) {

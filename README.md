@@ -4,113 +4,156 @@
 
 ## 👤 Autor del proyecto
 
-* **Nombre completo:** Osvaldo González Olguín
-* **Carrera:** Desarrollo de Aplicaciones
-* **Sede:** Online / DUOC UC
+- **Nombre completo:** Osvaldo González Olguín
+- **Carrera:** Desarrollo de Aplicaciones
+- **Sede:** Online / Duoc UC
+- **Asignatura:** Desarrollo Orientado a Objetos I
+- **Evaluación:** Evaluación Final Transversal - Semana 9
 
 ---
 
-## 📘 Descripción general del sistema
+## 📘 Descripción general
 
-📘 Descripción general del sistema
-Este proyecto corresponde a la (Semana 8) de la asignatura Desarrollo Orientado a Objetos I.
+Llanquihue Tour es un prototipo Java para apoyar la gestión de una agencia de turismo. El programa carga desde archivos TXT los guías, vehículos, colaboradores y servicios disponibles. Desde una interfaz gráfica se pueden registrar nuevas entidades, mostrar, buscar y eliminar datos, consultar servicios y crear reservas turísticas.
 
-En esta etapa, el sistema incorpora interfaces, polimorfismo y estructuras dinámicas para gestionar distintas entidades de la agencia Llanquihue Tour. Se define una interfaz Registrable que establece un contrato común para todas las entidades gestionables. Las clases GuiaTuristico, Vehiculo y ColaboradorExterno implementan esta interfaz y sobrescriben el método mostrarResumen().
+La solución aplica encapsulamiento, herencia, polimorfismo, abstracción, composición, interfaces, colecciones genéricas, sobrecarga, excepciones personalizadas y separación por paquetes.
 
-Se utiliza una colección ArrayList<Registrable> para almacenar objetos de distintos tipos, los cuales son recorridos y diferenciados mediante el operador instanceof. Además, se implementa una interfaz gráfica con JFrame que permite ingresar y visualizar las entidades del sistema.
+## ✅ Funcionalidades
 
-Con esta actividad se aplican conceptos relacionados con:
-
-Definición e implementación de interfaces
-
-Polimorfismo en tiempo de ejecución
-
-Colecciones genéricas (ArrayList)
-
-Diferenciación de tipos con instanceof
-
-Interfaz gráfica con JFrame y JOptionPane
-
-Separación de responsabilidades por paquetes
-
----
+- Carga automática de entidades desde `entidades.txt`.
+- Carga automática de servicios desde `servicios.txt`.
+- Registro de guías, vehículos y colaboradores externos.
+- Validación de campos, números positivos, patentes y teléfonos.
+- Visualización de una colección polimórfica `ArrayList<Registrable>`.
+- Búsqueda por nombre, patente, especialidad o servicio.
+- Filtrado por tipo mediante un método sobrecargado.
+- Eliminación de entidades.
+- Consulta de rutas gastronómicas, paseos lacustres y excursiones culturales.
+- Creación y visualización de reservas compuestas por un servicio y un guía.
+- Interfaz gráfica desarrollada con Java Swing.
 
 ## 🧱 Estructura del proyecto
 
 ```text
-📁 LlanquihueTourApp/
-├── 📁 src/
-│   └── 📁 main/
-│       └── 📁 java/
-│           └── 📁 com.llanquihue/
-│               ├── 📁 model/
-│               │   ├── ServicioTuristico.java
-│               │   ├── RutaGastronomica.java
-│               │   ├── PaseoLacustre.java
-│               │   ├── ExcursionCultural.java
-│               │   ├── Registrable.java
-│               │   ├── GuiaTuristico.java
-│               │   ├── Vehiculo.java
-│               │   └── ColaboradorExterno.java
-│               ├── 📁 data/
-│               │   ├── GestorServicios.java
-│               │   └── GestorEntidades.java
-│               ├── 📁 service/
-│               │   └── ControladorDeTurismo.java
-│               └── 📁 ui/
-│                   ├── Main.java
-│                   └── ScreenPrincipal.java
-
+LlanquihueTourAppNuevo/
+├── src/
+│   ├── main/
+│   │   ├── java/com/LlanquihueTour/
+│   │   │   ├── data/       # Lectura TXT y gestores de colecciones
+│   │   │   ├── exception/  # Excepción personalizada
+│   │   │   ├── model/      # Entidades y jerarquías del dominio
+│   │   │   ├── service/    # Controlador de servicios turísticos
+│   │   │   ├── ui/         # Ventana principal y punto de entrada
+│   │   │   └── utils/      # Librería propia de validaciones
+│   │   └── resources/datos/
+│   │       ├── entidades.txt
+│   │       └── servicios.txt
+├── build.gradle.kts
+└── settings.gradle.kts
 ```
 
----
+## 📚 Clases principales
 
-## 📚 Clases implementadas - Semana 8
+| Clase | Paquete | Responsabilidad |
+| --- | --- | --- |
+| `Registrable` | `model` | Contrato común para las entidades registrables. |
+| `ServicioTuristico` | `model` | Clase abstracta base de los servicios turísticos. |
+| `RutaGastronomica` | `model` | Especializa un servicio con número de paradas. |
+| `PaseoLacustre` | `model` | Especializa un servicio con tipo de embarcación. |
+| `ExcursionCultural` | `model` | Especializa un servicio con un lugar histórico. |
+| `GuiaTuristico` | `model` | Representa un guía con especialidad y experiencia. |
+| `Vehiculo` | `model` | Representa un vehículo y su capacidad. |
+| `ColaboradorExterno` | `model` | Representa un proveedor o colaborador de la agencia. |
+| `ReservaTuristica` | `model` | Compone un servicio turístico con un guía y un cliente. |
+| `LectorDatos` | `data` | Lee archivos TXT y convierte sus filas en objetos. |
+| `GestorEntidades` | `data` | Agrega, recorre, busca, filtra y elimina entidades. |
+| `GestorReservas` | `data` | Crea y consulta reservas durante la ejecución. |
+| `Validaciones` | `utils` | Librería reutilizable de reglas para los atributos. |
+| `ScreenPrincipal` | `ui` | Presenta las funciones mediante Java Swing. |
 
-| Clase                  | Paquete | Descripción                                                                                     |
-| ---------------------- |---------| ----------------------------------------------------------------------------------------------- |
-| `Registrable`    | `model` | Interfaz que define el contrato mostrarResumen() para todas las entidades.                           |
-| `GuiaTuristico`     | `model` | Implementa Registrable. Atributos: nombre, especialidad, yearsExperiencia.     |
-| `Vehiculo`        | `model` | Implementa Registrable. Atributos: patente, tipo, capacidad.  |
-| `ColaboradorExterno`    | `model` | Implementa Registrable. Atributos: nombre, servicio, telefono.       |
-| `GestorEntidades`      | `data`  | Contiene ArrayList<Registrable>, carga datos de prueba y recorre con instanceof. |
-| `ScreenPrincipal` | `ui`    | Interfaz gráfica con JFrame para ingresar y visualizar entidades.                            |
+## 🧠 Conceptos de POO aplicados
 
+- **Encapsulamiento:** los atributos son privados y se accede mediante getters y setters validados.
+- **Herencia:** `RutaGastronomica`, `PaseoLacustre` y `ExcursionCultural` heredan de `ServicioTuristico`.
+- **Polimorfismo:** una misma lista de `Registrable` almacena guías, vehículos y colaboradores.
+- **Abstracción:** `ServicioTuristico` es abstracta y obliga a especializar el comportamiento.
+- **Interfaz:** `Registrable` define el contrato `mostrarResumen()`.
+- **Composición:** `ReservaTuristica` contiene un `ServicioTuristico` y un `GuiaTuristico`.
+- **Sobreescritura:** las subclases usan `@Override` en `mostrarInformacion()` y `toString()`.
+- **Sobrecarga:** `GestorEntidades` permite buscar por texto o por tipo de clase.
+- **Colecciones genéricas:** se utilizan `ArrayList<Registrable>`, `ArrayList<ServicioTuristico>` y `ArrayList<ReservaTuristica>`.
+- **Excepción personalizada:** `DatoInvalidoException` informa datos incorrectos.
 
-## 🔧 Conceptos aplicados - Semana 8
+## 🗂️ Formato de los archivos TXT
 
-| Concepto                            | Aplicación en el proyecto                                                                                                |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **Interfaz**                    | Registrable define el método mostrarResumen() implementado por tres clases.       |
-| **Polimorfismo**                   | ArrayList<Registrable> almacena distintos tipos y los recorre con referencia a la interfaz.                                   |
-| **instanceof**              | 	Permite identificar el tipo de cada objeto y aplicar lógica diferenciada.                                                |
-| **Colección genérica**                        | 	ArrayList<Registrable> permite agregar cualquier clase que implemente la interfaz.                                                      |
+Los datos se separan con punto y coma. Las líneas que comienzan con `#` son comentarios.
 
----
+```text
+# entidades.txt
+GUIA;Pedro Muñoz;Montaña;8
+VEHICULO;ABCD12;Van;12
 
-## ⚙️ Instrucciones para compilar y ejecutar
+# servicios.txt
+GASTRONOMICA;3.5;Sabores del Sur;5
+LACUSTRE;2.5;Travesía Lago Llanquihue;Catamarán
+```
+
+## ⚙️ Requisitos
+
+- JDK 17 o superior.
+- IntelliJ IDEA recomendado.
+- No es necesario instalar Gradle porque el proyecto incluye Gradle Wrapper.
+
+## ▶️ Clonar y ejecutar
 
 ### Desde IntelliJ IDEA
 
-1. Clonar el repositorio desde GitHub:
+1. Clonar el repositorio:
 
-```bash
-git clone https://github.com/OsWaldo982/llanquihue-tour.git
-```
+   ```bash
+   git clone https://github.com/OsWaldo982/LlanquihueTourAppNuevo.git
+   ```
 
-2. Abrir el proyecto en IntelliJ IDEA.
-
-3. Navegar hasta el paquete `ui`.
-
-4. Abrir la clase `Main.java`.
-
+2. Abrir la carpeta del proyecto en IntelliJ IDEA.
+3. Esperar que Gradle termine de sincronizar.
+4. Abrir `src/main/java/com/LlanquihueTour/ui/Main.java`.
 5. Ejecutar el método `main()`.
 
+### Desde una terminal
 
-## 🎯 Objetivo de la Semana 8
+En macOS o Linux:
 
-Integrar interfaces, polimorfismo y estructuras dinámicas en el sistema de Llanquihue Tour. Se define una interfaz Registrable como contrato común, se implementa en múltiples clases, se almacenan objetos en una colección genérica y se diferencian mediante instanceof. Todo esto con una interfaz gráfica funcional.
+```bash
+./gradlew run
+```
 
+En Windows:
+
+```bat
+gradlew.bat run
+```
+
+## 🧪 Pruebas y distribución
+
+Ejecutar las pruebas automáticas:
+
+```bash
+./gradlew test
+```
+
+Compilar el proyecto y generar el archivo JAR:
+
+```bash
+./gradlew build
+```
+
+Generar una versión distribuible con sus scripts de ejecución:
+
+```bash
+./gradlew installDist
+```
+
+Los resultados se generan dentro de la carpeta `build/`.
 
 ---
 

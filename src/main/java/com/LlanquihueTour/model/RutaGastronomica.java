@@ -1,6 +1,11 @@
 package com.LlanquihueTour.model;
 
 
+import com.LlanquihueTour.utils.Validaciones;
+
+/**
+ * Servicio turistico que visita distintas paradas gastronomicas.
+ */
 public class RutaGastronomica extends ServicioTuristico {
 
     private int numeroDeParadas;
@@ -8,7 +13,7 @@ public class RutaGastronomica extends ServicioTuristico {
 
     public RutaGastronomica(float duracionHoras, String nombre, int numeroDeParadas) {
         super(duracionHoras, nombre);
-        this.numeroDeParadas = numeroDeParadas;
+        setNumeroDeParadas(numeroDeParadas);
 
     }
 
@@ -17,7 +22,7 @@ public class RutaGastronomica extends ServicioTuristico {
     }
 
     public void setNumeroDeParadas(int numeroDeParadas) {
-        this.numeroDeParadas = numeroDeParadas;
+        this.numeroDeParadas = Validaciones.enteroPositivo(numeroDeParadas, "El numero de paradas");
     }
 
     @Override

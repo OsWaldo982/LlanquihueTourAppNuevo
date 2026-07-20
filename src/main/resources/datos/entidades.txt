@@ -1,0 +1,7 @@
+# TIPO;DATO1;DATO2;DATO3
+GUIA;Pedro Muñoz;Montaña;8
+GUIA;Laura Vidal;Gastronomía;5
+VEHICULO;ABCD12;Van;12
+VEHICULO;EFGH34;Bus;30
+COLABORADOR;Restaurante El Patagónico;Alimentación;+56912345678
+COLABORADOR;Museo Colonial;Cultura;+56987654321
